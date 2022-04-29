@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Music Player</string>
+    <string name="title_song">Songs</string>
+    <string name="title_album">Albums</string>
+    <string name="title_artists">Artists</string>
+    <string name="title_playlist">Playlist</string>
+
+    <!-- Preference Titles -->
+    <string name="account_header">Account</string>
+    <string name="audio_quality_header">Audio Quality</string>
+
+    <!-- Account Preferences -->
+    <string name="email_title">Email</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Audio Quality Preferences -->
+    <string name="auto_adjust_title">Auto adjust quality</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="title_activity_settings">Settings</string>
+    <string name="settings">Settings</string>
+    <string name="content_no_songs">no songs found</string>
+</resources>

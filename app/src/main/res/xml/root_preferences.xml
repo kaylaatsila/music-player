@@ -1,0 +1,23 @@
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/audio_quality_header">
+        <SwitchPreferenceCompat
+            app:summary="@string/auto_adjust_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Author">
+        <ListPreference
+            app:summary="Kayla Atsila Ivanka"/>
+        <ListPreference
+            app:summary="Muhammad Farhan Fadhillah"/>
+        <ListPreference
+            app:summary="Aditya Apri Nugroho"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Version">
+        <ListPreference
+            app:summary="1.0.0" />
+    </PreferenceCategory>
+</PreferenceScreen>

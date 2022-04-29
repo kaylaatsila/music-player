@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ui.player.MusicPlayerActivity">
+
+    <RelativeLayout
+        android:id="@+id/song_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="40dp">
+        <TextView
+            android:id="@+id/song_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:fontFamily="@font/dm_sans_bold"
+            android:singleLine="true"
+            android:text="Title"
+            android:textSize="26dp" />
+
+        <TextView
+            android:id="@+id/song_artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/song_title"
+            android:layout_alignStart="@id/song_title"
+            android:layout_alignEnd="@id/song_title"
+            android:layout_marginTop="5dp"
+            android:ellipsize="marquee"
+            android:fontFamily="@font/dm_sans_bold"
+            android:singleLine="true"
+            android:text="Artist"
+            android:textSize="21dp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/music_icon_big"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_below="@id/song_info"
+        android:layout_alignStart="@id/song_info"
+        android:layout_alignEnd="@id/song_info"
+        android:layout_alignParentBottom="@id/controls"
+        android:layout_centerInParent="true"
+        android:layout_marginVertical="28dp"
+        android:src="@drawable/ic_album" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/controls"
+        style="@style/Widget.Material3.CardView.Elevated"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="28dp"
+        app:cardBackgroundColor="@color/md_theme_light_primaryContainer">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="40dp">
+
+            <SeekBar
+                android:id="@+id/seek_bar"
+                style="@style/Widget.App.SeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp" />
+
+            <TextView
+                android:id="@+id/current_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/seek_bar"
+                android:layout_alignStart="@id/seek_bar"
+                android:fontFamily="@font/dm_sans"
+                android:text="0:00"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/total_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/seek_bar"
+                android:layout_alignEnd="@id/seek_bar"
+                android:fontFamily="@font/dm_sans"
+                android:text="0:00"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="120dp">
+
+            <ImageView
+                android:id="@+id/previous"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_skip_previous" />
+
+            <ImageView
+                android:id="@+id/next"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_skip_next" />
+
+            <ImageView
+                android:id="@+id/pause_play"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_pause" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>
