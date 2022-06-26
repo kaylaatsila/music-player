@@ -9,12 +9,6 @@ public class ArtistModel implements Serializable {
         this.artist = artist;
     }
 
-    public ArtistModel(String path, String id, String artist) {
-        this.path = path;
-        this.id = id;
-        this.artist = artist;
-    }
-
     public String getPath() {
         return path;
     }

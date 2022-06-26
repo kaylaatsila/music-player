@@ -24,9 +24,6 @@ import java.util.ArrayList;
 
 public class AlbumListAdapter extends RecyclerView.Adapter<AlbumListAdapter.ViewHolder> {
 
-    ArrayList<String> albumTitle;
-    ArrayList<String> albumArtist;
-    ArrayList<Integer> albumArt;
     ArrayList<AlbumModel> albumList;
     Context context;
 
@@ -34,13 +31,6 @@ public class AlbumListAdapter extends RecyclerView.Adapter<AlbumListAdapter.View
 //
 //    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
 //        this.onItemClickCallback = onItemClickCallback;
-//    }
-
-//    public AlbumListAdapter(Context ct, ArrayList<String> albumTitle, ArrayList<String> albumArtist, ArrayList<Integer> albumArt){
-//        this.context = ct;
-//        this.albumTitle = albumTitle;
-//        this.albumArtist = albumArtist;
-//        this.albumArt = albumArt;
 //    }
 
     public AlbumListAdapter(ArrayList<AlbumModel> albumList, Context context) {
@@ -57,33 +47,19 @@ public class AlbumListAdapter extends RecyclerView.Adapter<AlbumListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        holder.albumTitleText.setText(albumTitle.get(position));
-//        holder.albumArtistText.setText(albumArtist.get(position));
-//
-//        Glide.with(holder.itemView.getContext())
-//                .load(albumArt.get(position))
-//                .apply(new RequestOptions().override(600, 600))
-//                .into(holder.albumArt);
-
         AlbumModel albumData = albumList.get(position);
         holder.albumTitleText.setText(albumData.getAlbum());
         holder.albumArtistText.setText(albumData.getArtist());
+        holder.albumArt.setImageResource(albumData.getAlbum_art());
 
         holder.itemView.setOnClickListener(v -> {
-//            MyMediaPlayer.getInstance().reset();
-//            MyMediaPlayer.currentIndex = position;
-            Intent intent = new Intent(context , AlbumDetailActivity.class);
-            intent.putExtra("LIST", albumList);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
+            Intent i = new Intent(context , AlbumDetailActivity.class);
+            i.putExtra("art", albumData.getAlbum_art());
+            i.putExtra("album_title", albumData.getAlbum());
+            i.putExtra("album_artist", albumData.getArtist());
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(i);
         });
-
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onItemClickCallback.onItemClicked(albumTitle.get(holder.getAdapterPosition()));
-//            }
-//        });
     }
 
     @Override
@@ -103,8 +79,4 @@ public class AlbumListAdapter extends RecyclerView.Adapter<AlbumListAdapter.View
             albumArt = itemView.findViewById(R.id.music_album_art);
         }
     }
-
-//    public interface OnItemClickCallback {
-//        void onItemClicked(String album);
-//    }
 }

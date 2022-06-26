@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class ArtistsFragment extends Fragment {
-    private ArrayList<String> artistList = new ArrayList<>();
+    private ArrayList<ArtistModel> artistList = new ArrayList<>();
     private FragmentArtistsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,8 +57,10 @@ public class ArtistsFragment extends Fragment {
         while(cursor.moveToNext()){
             String artist = cursor.getString(_artist);
 
-            if(!artistList.contains(artist)){
-                artistList.add(artist);
+            ArtistModel artistModel = new ArtistModel(artist);
+
+            if(!artistList.contains(artistModel)){
+                artistList.add(artistModel);
             }
         }
 

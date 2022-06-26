@@ -70,7 +70,7 @@ public class AlbumsFragment extends Fragment {
 
         binding.recyclerViewAlbum.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerViewAlbum.setAdapter(adapter);
-        
+
         return root;
     }
 
