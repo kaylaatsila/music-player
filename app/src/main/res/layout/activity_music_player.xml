@@ -58,9 +58,9 @@
         android:layout_height="230dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
+        app:cardBackgroundColor="@color/md_theme_light_primaryContainer"
         app:cardCornerRadius="28dp"
-        app:cardUseCompatPadding="true"
-        app:cardBackgroundColor="@color/md_theme_light_primaryContainer">
+        app:cardUseCompatPadding="true">
 
         <RelativeLayout
             android:layout_width="wrap_content"
