@@ -66,21 +66,12 @@ public class AlbumsFragment extends Fragment {
             }
         }
 
+        AlbumListAdapter adapter = new AlbumListAdapter(albumDatas, requireContext().getApplicationContext());
+
         binding.recyclerViewAlbum.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.recyclerViewAlbum.setAdapter(new AlbumListAdapter(albumDatas, requireContext().getApplicationContext()));
-
-//        adapter.setOnItemClickCallback(new AlbumListAdapter.OnItemClickCallback() {
-//            @Override
-//            public void onItemClicked(String album) {
-//                showSelectedAlbum(album);
-//            }
-//        });
+        binding.recyclerViewAlbum.setAdapter(adapter);
+        
         return root;
-    }
-
-    private void showSelectedAlbum(String album) {
-        Intent i = new Intent(getContext(), AlbumDetailActivity.class);
-        startActivity(i);
     }
 
     @Override
