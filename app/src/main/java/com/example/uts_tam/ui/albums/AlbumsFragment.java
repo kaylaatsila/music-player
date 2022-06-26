@@ -1,6 +1,7 @@
 package com.example.uts_tam.ui.albums;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,18 +18,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.uts_tam.R;
 import com.example.uts_tam.databinding.FragmentAlbumsBinding;
+import com.example.uts_tam.ui.albums.detail.AlbumDetailActivity;
+import com.example.uts_tam.ui.songs.AudioModel;
 
 import java.util.ArrayList;
 
 public class AlbumsFragment extends Fragment {
-    private ArrayList<String> albumTitle = new ArrayList<>();
-    private ArrayList<String> albumArtist = new ArrayList<>();
-    private ArrayList<Integer> albumArt = new ArrayList<>();
+    private ArrayList<AlbumModel> albumDatas = new ArrayList<>();
     private FragmentAlbumsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        AlbumsViewModel albumsViewModel = new ViewModelProvider(this).get(AlbumsViewModel.class);
-
         binding = FragmentAlbumsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -60,17 +59,28 @@ public class AlbumsFragment extends Fragment {
             String album = cursor.getString(_album);
             int album_art = cursor.getInt(_album_art);
 
-            if(!albumTitle.contains(album)){
-                albumTitle.add(album);
-                albumArtist.add(artist);
-                albumArt.add(album_art);
+            AlbumModel albumData = new AlbumModel(album_art, album, artist);
+
+            if(!albumDatas.contains(albumData)){
+                albumDatas.add(albumData);
             }
         }
 
         binding.recyclerViewAlbum.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.recyclerViewAlbum.setAdapter(new AlbumListAdapter(requireContext().getApplicationContext(), albumTitle, albumArtist, albumArt));
+        binding.recyclerViewAlbum.setAdapter(new AlbumListAdapter(albumDatas, requireContext().getApplicationContext()));
 
+//        adapter.setOnItemClickCallback(new AlbumListAdapter.OnItemClickCallback() {
+//            @Override
+//            public void onItemClicked(String album) {
+//                showSelectedAlbum(album);
+//            }
+//        });
         return root;
+    }
+
+    private void showSelectedAlbum(String album) {
+        Intent i = new Intent(getContext(), AlbumDetailActivity.class);
+        startActivity(i);
     }
 
     @Override
@@ -88,6 +98,6 @@ public class AlbumsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        binding.recyclerViewAlbum.setAdapter(new AlbumListAdapter(requireContext().getApplicationContext(), albumTitle, albumArtist, albumArt));
+        binding.recyclerViewAlbum.setAdapter(new AlbumListAdapter(albumDatas, requireContext().getApplicationContext()));
     }
 }

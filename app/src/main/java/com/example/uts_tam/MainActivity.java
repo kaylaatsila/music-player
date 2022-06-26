@@ -60,23 +60,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_song, R.id.navigation_album, R.id.navigation_artist)
+                R.id.navigation_song,
+                R.id.navigation_album,
+                R.id.navigation_artist)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
-            @Override
-            public void onDestinationChanged(@NonNull NavController controller,
-                                             @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                if (destination.getId() == R.id.navigation_song) {
-                    binding.topAppBar.setTitle(title[0]);
-                } else if ((destination.getId() == R.id.navigation_artist)){
-                    binding.topAppBar.setTitle(title[1]);
-                } else {
-                    binding.topAppBar.setTitle(title[2]);
-                }
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            if (destination.getId() == R.id.navigation_song) {
+                binding.topAppBar.setTitle(title[0]);
+            } else if ((destination.getId() == R.id.navigation_artist)){
+                binding.topAppBar.setTitle(title[1]);
+            } else {
+                binding.topAppBar.setTitle(title[2]);
             }
         });
 
@@ -100,16 +98,12 @@ public class MainActivity extends AppCompatActivity {
 
     boolean checkPermission(){
         int result = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE);
-        if(result == PackageManager.PERMISSION_GRANTED){
-            return true;
-        }else{
-            return false;
-        }
+        return result == PackageManager.PERMISSION_GRANTED;
     }
 
     void requestPermission(){
         if(ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,Manifest.permission.READ_EXTERNAL_STORAGE)){
-            Toast.makeText(MainActivity.this,"READ PERMISSION IS REQUIRED, PLEASE ALLOW FROM SETTINGS",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"Read Permission Is Required, Please Allow From Settings", Toast.LENGTH_SHORT).show();
         }else
             ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},123);
     }

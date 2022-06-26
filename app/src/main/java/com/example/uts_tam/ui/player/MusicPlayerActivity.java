@@ -1,5 +1,6 @@
 package com.example.uts_tam.ui.player;
 
+import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -95,6 +96,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
         titleTv.setText(currentSong.getTitle());
         artistTv.setText(currentSong.getArtist());
+//        musicIcon.setImageResource(currentSong.getArt());
 
         totalTimeTv.setText(convertToMMSS(String.valueOf(currentSong.getDuration())));
 
@@ -121,7 +123,6 @@ public class MusicPlayerActivity extends AppCompatActivity {
     }
 
     private void playNextSong(){
-
         if(MyMediaPlayer.currentIndex== songsList.size()-1)
             return;
         MyMediaPlayer.currentIndex +=1;
@@ -144,6 +145,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
             mediaPlayer.start();
     }
 
+    @SuppressLint("DefaultLocale")
     public static String convertToMMSS(String duration){
         long millis = Long.parseLong(duration);
         return String.format("%02d:%02d",

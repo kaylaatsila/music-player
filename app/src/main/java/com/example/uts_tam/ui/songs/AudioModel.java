@@ -6,6 +6,7 @@ public class AudioModel implements Serializable {
     String path;
     String duration;
     String title, artist, id, album, num_tracks, num_albums;
+    int art;
 
     public AudioModel(String path, String title, String artist, String duration) {
         this.path = path;
@@ -44,6 +45,14 @@ public class AudioModel implements Serializable {
 
     public void setArtist(String artist) {
         this.artist = artist;
+    }
+
+    public int getArt() {
+        return art;
+    }
+
+    public void setArt(int art) {
+        this.art = art;
     }
 
     public String getId() {

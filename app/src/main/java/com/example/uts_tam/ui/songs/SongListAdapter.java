@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,8 +31,8 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.song_item,parent,false);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.song_item, parent,false);
         return new ViewHolder(view);
     }
 
@@ -41,16 +42,13 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
         holder.titleTextView.setText(songData.getTitle());
         holder.artistTextView.setText(songData.getArtist());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MyMediaPlayer.getInstance().reset();
-                MyMediaPlayer.currentIndex = position;
-                Intent intent = new Intent(context , MusicPlayerActivity.class);
-                intent.putExtra("LIST", songsList);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            MyMediaPlayer.getInstance().reset();
+            MyMediaPlayer.currentIndex = position;
+            Intent intent = new Intent(context , MusicPlayerActivity.class);
+            intent.putExtra("LIST", songsList);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
     }
 
@@ -61,13 +59,13 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView titleTextView, artistTextView;
-//        ImageView iconImageView;
+        ImageView iconImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.music_title_text);
             artistTextView = itemView.findViewById(R.id.music_artist_text);
-//            iconImageView = itemView.findViewById(R.id.icon_view);
+            iconImageView = itemView.findViewById(R.id.music_icon_big);
         }
     }
 }

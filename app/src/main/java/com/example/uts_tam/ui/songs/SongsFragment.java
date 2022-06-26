@@ -61,7 +61,7 @@ public class SongsFragment extends Fragment {
 
             AudioModel songData = new AudioModel(path, name, artist, duration);
 
-            if(new File(songData.getPath()).exists()){
+            if(!songsList.contains(songData)){
                 songsList.add(songData);
             }
         }
