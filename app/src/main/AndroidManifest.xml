@@ -14,12 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Utstam">
         <activity
+            android:name=".ui.artists.detail.ArtistDetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.albums.detail.AlbumDetailActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity android:name=".ui.player.MusicPlayerActivity" />
         <activity
             android:name=".ui.settings.SettingsActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_settings" />
         <activity
             android:name=".MainActivity"
